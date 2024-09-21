@@ -3,12 +3,13 @@ import '@xyflow/react/dist/style.css';
 import { fs } from '@tauri-apps/api';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
+import { FloatLabel } from 'primereact/floatlabel';
 import { useEffect, useState } from 'react';
 
 async function listPlaywrightFiles(setNodes) {
   try {
     // 문서 폴더 경로 가져오기
-    const documentsDir = import.meta.env.PLAYWRIGHT_PATH;
+    const documentsDir = import.meta.env.VITE_PLAYWRIGHT_PATH;
 
     console.log("Documents folder path:", documentsDir);
 
@@ -31,9 +32,15 @@ async function listPlaywrightFiles(setNodes) {
 
 // 새로운 파일을 생성하고 노드를 추가하는 함수
 async function createFileAndAddNode(fileName: string, setNodes: React.Dispatch<React.SetStateAction<Node[]>>) {
+  // 파일 이름이 없으면 함수 종료
+  if (!fileName) {
+    console.error('File name is empty');
+    return;
+  }
+
   try {
     // 문서 폴더 경로 지정
-    const documentsDir = import.meta.env.PLAYWRIGHT_PATH;
+    const documentsDir = import.meta.env.VITE_PLAYWRIGHT_PATH;
     const filePath = `${documentsDir}/${fileName}.ts`;
 
     // 새로운 파일 생성

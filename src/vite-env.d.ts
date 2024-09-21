@@ -1,6 +1,6 @@
 /// <reference types="vite/client" />
 interface ImportMetaEnv {
-    readonly PLAYWRIGHT_PATH: string;
+    readonly VITE_PLAYWRIGHT_PATH: string;
 }
   
 interface ImportMeta {
