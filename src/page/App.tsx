@@ -76,8 +76,13 @@ function Flow() {
 
   return (
     <>
-      <InputText value={inputValue} onChange={(e) => setInputValue(e.target.value)}  />
-      <Button onClick={() => createFileAndAddNode(inputValue, setNodes)}>Add Playwright Node</Button >
+      <div style={{ display: 'flex', flexDirection: 'row', margin: '10'}}>
+        <FloatLabel>
+          <InputText id="fileName" value={inputValue} onChange={(e) => setInputValue(e.target.value)}  />
+          <label htmlFor="fileName">테스트 노드 이름</label>
+        </FloatLabel>
+        <Button onClick={() => createFileAndAddNode(inputValue, setNodes)}>Add Playwright Node</Button >
+      </div>
       <div style={{ width: '100%', height: '100vh' }}>
         <ReactFlow nodes={nodes} onNodesChange={onNodesChange}>
           <Background />
